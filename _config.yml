@@ -1,0 +1,31 @@
+# Dependencies
+markdown:         kramdown
+# highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+# relative_permalinks: true
+
+# Setup
+title:            Wei-Ning Chen
+tagline:          'Personal Homepage'
+description:      ' Pearsonal Homepage '
+url:              
+baseurl:          /
+
+author:
+  name:           'Wei-Ning Chen (陳偉寧)'
+  url:            
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:           
+  repo:           https://github.com/weiningchen
+
+collections:
+  research:
+    output:         true
+    permalink:      /research/:title:output_ext

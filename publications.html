@@ -1,0 +1,86 @@
+---
+layout:   default
+title:    Publications
+---
+
+<center><h1>Publications</h1></center>
+<!--
+<br />
+
+Currently I am working on the <i> generalizability of deep neural networks,</i> trying to answer why deep learning works so well in real world problems. In particular, I study the generalization of <i> convolutional neural networks (CNN) </i> on some high dimensional generative models, such as <i> generative adversarial nets (GAN).</i> In addition to machine learning, I am also interested in some emerging issues of data science, including <i> data anonymity </i> or <i> privacy </i>. For instance, I have studied the fundamental limits of anonymous detection or inference, with application in crowdsourced machine learning or sensor networks.
+
+<br />
+-->
+<style>
+ol {
+    counter-reset: list;
+}
+ol > li {
+    list-style: none;
+	list-style-position: inside;
+	text-indent: -30px;
+}
+ol > li:before {
+    content: " [" counter(list) "] ";
+    counter-increment: list;
+}
+
+</style>
+
+<h3> Publications </h3>
+
+<u> Journal Article </u>
+
+<ol>
+<li> 
+	<u>Wei-Ning Chen</u>, and I-Hsiang Wang, 
+	<b>"Anonymous Heterogeneous Distributed Detection: Optimal Decision Rules, Error Exponents, and the Price of Anonymity,"</b> 
+	to appear at  <i>IEEE Transaction on Information Theory</i>
+	<a href="https://arxiv.org/abs/1805.03554">[arXiv]</a> 
+</li>
+</ol>
+
+<u> Conference Proceedings </u>
+<ol>
+<li> 
+	<u>Wei-Ning Chen</u>, and I-Hsiang Wang, 
+	<b>"On the Price of Source Anonymity in Heterogeneous Parametric Point Estimation,"</b> 
+	<i>IEEE International Symposium on Information Theory (ISIT), Paris, July 2019</i>
+	<a href="/paper/isit19_AHE.pdf">[Full Version]</a>
+	<a href="/paper/isit19_AEst_slides_v3.pdf">[Slides]</a>
+</li>
+<li> 
+	<u>Wei-Ning Chen</u>, Ho-Chun Chen, and I-Hsiang Wang, 
+	<b>“On the Fundamental Limits of Heterogeneous Distributed Detection: Price of Anonymity,"</b> <i>IEEE International Symposium on Information Theory (ISIT), Vail, June 2018</i> 
+	<a href="/paper/isit18_AHD.pdf">[Full Version]</a> 
+	<a href="/paper/isit18_AHD_slides_v5.pdf">[Slides]</a> 
+</li>
+<li> 
+	<u>Wei-Ning Chen</u>, and I-Hsiang Wang, 
+	<b>"Partial Data Extraction via Noisy Histogram Queries: Information Theoretic Bounds,"</b> 
+	<i>IEEE International Symposium on Information Theory (ISIT), Aachen, June 2017</i> 
+	<a href="/paper/isit17_NHQ.pdf">[Full Version]</a>
+	<a href="/paper/isit17_NHQ_slides_v8.pdf">[Slides]</a>
+</li>
+</ol>
+
+<h3> Master Thesis</h3>
+<ul>
+<li>
+	<u>Wei-Ning Chen</u>,
+	<b>"Fundamental Limits of Anonymous Statistical Inference: Privacy Preserving Crowd-sourcing and Heterogeneous Sensor Networks," </b><i>NTU Master Thesis, July 2018</i>
+	<a href="/paper/thesis_v4.pdf">[pdf]</a>
+	<a href="/paper/ntu_oral_printed.pdf">[Slides]</a>
+</li>
+</ul>
+
+<!--
+{% for res in site.research %}
+
+  <div class="topic"><b>{{ res.title }}</b></div>
+  Advisor: {{ res.advisor }}
+  <a href="{{ res.doclink }}.pdf" target="_blank">[{{ res.docname }}]</a> 
+  <a href="/docs/{{ res.doclink }}_slide.pdf" target="_black">[slide]</a>
+
+{% endfor %}
+-->
