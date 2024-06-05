@@ -15,36 +15,37 @@
         footer {
             background-color: black;
             color: white;
-            padding: 25px 35px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        footer .footer-range {
+            margin: 40px 0 25px;
         }
 
         .footer-content {
-            /* border: 2px solid red; */
             display: flex;
             flex-wrap: wrap;
             margin: 30px 0;
             text-align: left;
         }
 
-        .footer-content .server-l1 a {
-            text-decoration: none;
-            color: white;
-        }
-
         .footer-content .server-l1 {
             font-size: 17px;
             display: flex;
             flex-wrap: wrap;
-            /* border: 2px solid red; */
-            margin-right: 30px;
         }
 
         .footer-content .server-l1>li {
-            margin-right: 20px;
+            margin-right: 40px;
         }
 
         .footer-content .server-l2 {
-            /* border: 2px solid red; */
             font-size: 13px;
             margin: 15px 0;
         }
@@ -54,49 +55,53 @@
             margin: 5px 0;
         }
 
+        .footer-content .server-l2 a {
+            text-decoration: none;
+        }
+
         .footer-content .line {
             background-color: white;
             width: 2px;
-
-        }
-
-        .footer-content .info {
-            /* border: 2px solid red; */
-            margin-left: 20px;
+            margin: 0 20px;
         }
 
         .footer-content .info .sponsor {
-            /* border: 2px solid red; */
             display: flex;
             margin-bottom: 20px;
         }
 
-        .footer-content .info .sponsor img {
-            /* border: 2px solid red; */
+        .footer-content .info .sponsor a {
             margin: 0px 10px;
+        }
+
+        .footer-content .info .sponsor img {
             vertical-align: middle;
         }
 
         .footer-content .info .community {
             display: flex;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .footer-content .info .community-pic {
-            /* border: 2px solid red; */
             display: flex;
         }
 
-        .footer-content .info .community-pic img {
-            /* border: 2px solid red; */
+        .footer-content .info .community-pic a {
             margin: 0px 10px;
+        }
+
+        .footer-content .info .community-pic img {
             width: 25px;
             height: 25px;
         }
 
         .footer-content .info .community-text {
-            /* border: 2px solid red; */
             display: flex;
+        }
+
+        .footer-content .info .community-text a {
+            color: rgb(130, 129, 129)
         }
 
         .footer-content .info .community-text li {
@@ -104,40 +109,39 @@
             margin: 0 10px;
         }
 
-        .footer-content .info .community-text a {
-            color: white;
+        .footer-content .info .connection {
+            display: flex;
+            font-size: 12px;
         }
 
-        .footer-content .info .connection {
-            /* border: 2px solid red; */
-            display: flex;
+        .footer-content .info .connection dt {
+            color: rgb(130, 129, 129);
+            margin-bottom: 10px;
         }
 
         .footer-content .info .connection .subConnection {
-            /* border: 2px solid red; */
-            margin: 0 10px;
+            margin: 0 20px;
         }
 
         .bottom {
-            /* border: 2px solid red; */
             display: flex;
-
+            font-size: 12px;
+            color: rgb(130, 129, 129)
         }
 
         .bottom .link {
             display: flex;
-
         }
 
         .bottom .link li {
             display: flex;
-            /* border: 2px solid red; */
             margin: 0 10px;
         }
 
         .bottom a {
             color: white;
             text-decoration: none;
+            color: rgb(130, 129, 129)
         }
     </style>
 
@@ -147,166 +151,171 @@
 <body>
 
     <footer>
-        <img src="https://ibw.bwnet.com.tw/file/img/logo-white.png" alt="商周footer logo">
 
-        <div class="footer-content">
-            <ul class="server-l1">
-                <li>
-                    內容分類
-                    <ul class="server-l2">
-                        <li><a href="#">焦點</a></li>
-                        <li><a href="#">國際</a></li>
-                        <li><a href="#">財經</a></li>
-                        <li><a href="#">管理</a></li>
-                        <li><a href="#">職場</a></li>
-                        <li><a href="#">共好ESG</a></li>
-                    </ul>
-                </li>
-                <li>
-                    特色頻道
-                    <ul class="server-l2">
-                        <li><a href="#">名家專欄</a></li>
-                        <li><a href="#">特別企劃</a></li>
-                        <li><a href="#">影音</a></li>
-                        <li><a href="#">商周財富網</a></li>
-                        <li><a href="#">良醫健康網</a></li>
-                    </ul>
-                </li>
-                <li>
-                    商周線上讀
-                    <ul class="server-l2">
-                        <li><a href="#">商周封面</a></li>
-                        <li><a href="#">兩岸關西</a></li>
-                        <li><a href="#">人物報導</a></li>
-                        <li><a href="#">職場管理</a></li>
-                        <li><a href="#">申請七天試閱</a></li>
-                    </ul>
-                </li>
-                <li>
-                    多元服務
-                    <ul class="server-l2">
-                        <li><a href="#">訂閱商周</a></li>
-                        <li><a href="#">客服中心</a></li>
-                        <li><a href="#">常見問答</a></li>
-                        <li><a href="#">活動總攬</a></li>
-                        <li><a href="#">商周Store</a></li>
-                        <li><a href="#">會員中心</a></li>
-                        <li><a href="#">序號兌換</a></li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="footer-range">
+            <img src="https://ibw.bwnet.com.tw/file/img/logo-white.png" alt="商周footer logo">
 
-            <div class="line"></div>
 
-            <div class="info">
-                <ul class="sponsor">
+            <div class="footer-content">
+                <ul class="server-l1">
                     <li>
-                        <a href="#">
-                            <img src="https://ibw.bwnet.com.tw/file/img/logo-white-small.png" alt="Logo-商周">
-                        </a>
+                        內容分類
+                        <ul class="server-l2">
+                            <li><a href="#">焦點</a></li>
+                            <li><a href="#">國際</a></li>
+                            <li><a href="#">財經</a></li>
+                            <li><a href="#">管理</a></li>
+                            <li><a href="#">職場</a></li>
+                            <li><a href="#">共好ESG</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <img src="https://ibw.bwnet.com.tw/file/img/smart-white.png" alt="Logo-Smart">
-                        </a>
+                        特色頻道
+                        <ul class="server-l2">
+                            <li><a href="#">名家專欄</a></li>
+                            <li><a href="#">特別企劃</a></li>
+                            <li><a href="#">影音</a></li>
+                            <li><a href="#">商周財富網</a></li>
+                            <li><a href="#">良醫健康網</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <img src="	https://ibw.bwnet.com.tw/file/img/health-white.png" alt="Logo-health">
-                        </a>
+                        商周線上讀
+                        <ul class="server-l2">
+                            <li><a href="#">商周封面</a></li>
+                            <li><a href="#">兩岸關西</a></li>
+                            <li><a href="#">人物報導</a></li>
+                            <li><a href="#">職場管理</a></li>
+                            <li><a href="#">申請七天試閱</a></li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <img src="https://ibw.bwnet.com.tw/file/img/alive-white.png" alt="Logo-alive">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="https://ibw.bwnet.com.tw/file/img/bwe-white.png" alt="Logo-BWE">
-                        </a>
+                        多元服務
+                        <ul class="server-l2">
+                            <li><a href="#">訂閱商周</a></li>
+                            <li><a href="#">客服中心</a></li>
+                            <li><a href="#">常見問答</a></li>
+                            <li><a href="#">活動總攬</a></li>
+                            <li><a href="#">商周Store</a></li>
+                            <li><a href="#">會員中心</a></li>
+                            <li><a href="#">序號兌換</a></li>
+                        </ul>
                     </li>
                 </ul>
 
-                <div class="community">
-                    <ul class="community-pic">
+                <div class="line"></div>
+
+                <div class="info">
+                    <ul class="sponsor">
                         <li>
                             <a href="#">
-                                <img src="	https://ibw.bwnet.com.tw/file/img/footer-fb-normal.png" alt="Logo-FB">
+                                <img src="https://ibw.bwnet.com.tw/file/img/logo-white-small.png" alt="Logo-商周">
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="	https://ibw.bwnet.com.tw/file/img/footer-line-normal.png" alt="Logo-Line">
+                                <img src="https://ibw.bwnet.com.tw/file/img/smart-white.png" alt="Logo-Smart">
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="	https://ibw.bwnet.com.tw/file/img/footer-yt-normal.png" alt="Logo-YT">
+                                <img src="	https://ibw.bwnet.com.tw/file/img/health-white.png" alt="Logo-health">
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="	https://ibw.bwnet.com.tw/file/img/footer-web-normal.png" alt="Logo-RSS">
+                                <img src="https://ibw.bwnet.com.tw/file/img/alive-white.png" alt="Logo-alive">
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <img src="	https://ibw.bwnet.com.tw/file/img/footer-instagram.svg" alt="Logo-IG">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="	https://ibw.bwnet.com.tw/file/img/footer-telegram.svg" alt="Logo-Telegram">
+                                <img src="https://ibw.bwnet.com.tw/file/img/bwe-white.png" alt="Logo-BWE">
                             </a>
                         </li>
                     </ul>
-                    <ul class="community-text">
-                        <li>
-                            <a href="#">下載App抽好禮 </a>
-                        </li>
-                        <li>
-                            <a href="#">訂閱電子報 </a>
-                        </li>
-                    </ul>
+
+                    <div class="community">
+                        <ul class="community-pic">
+                            <li>
+                                <a href="#">
+                                    <img src="	https://ibw.bwnet.com.tw/file/img/footer-fb-normal.png" alt="Logo-FB">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="	https://ibw.bwnet.com.tw/file/img/footer-line-normal.png"
+                                        alt="Logo-Line">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="	https://ibw.bwnet.com.tw/file/img/footer-yt-normal.png" alt="Logo-YT">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="	https://ibw.bwnet.com.tw/file/img/footer-web-normal.png" alt="Logo-RSS">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="	https://ibw.bwnet.com.tw/file/img/footer-instagram.svg" alt="Logo-IG">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="	https://ibw.bwnet.com.tw/file/img/footer-telegram.svg"
+                                        alt="Logo-Telegram">
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="community-text">
+                            <li>
+                                <a href="#">下載App抽好禮 </a>
+                            </li>
+                            <li>
+                                <a href="#">訂閱電子報 </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <dl class="connection">
+                        <div class="subConnection">
+                            <dt>客戶服務專線</dt>
+                            <dd>(02) 2510-8888</dd>
+                        </div>
+
+                        <div class="subConnection">
+                            <dt>傳真</dt>
+                            <dd>(02) 2503-6989</dd>
+                        </div>
+
+                        <div class="subConnection">
+                            <dt>服務時間</dt>
+                            <dd>週一至週五09:00~18:00 (例假日除外)</dd>
+                        </div>
+
+                    </dl>
                 </div>
+            </div>
 
-                <dl class="connection">
-                    <div class="subConnection">
-                        <dt>客戶服務專線</dt>
-                        <dd>(02) 2510-8888</dd>
-                    </div>
+            <div class="bottom">
+                <p class="text">
+                    © 2019 Business Weekly a division of Cite Publishing Ltd All Rights Reserved.
+                </p>
 
-                    <div class="subConnection">
-                        <dt>傳真</dt>
-                        <dd>(02) 2503-6989</dd>
-                    </div>
+                <ul class="link">
+                    <li><a href="#">關於商周集團</a></li>
+                    <li><a href="#">公告</a></li>
+                    <li><a href="#">文章影音授權</a></li>
+                    <li><a href="#">廣告合作</a></li>
+                    <li><a href="#">常見問題</a></li>
+                    <li><a href="#">隱私權說明</a></li>
+                    <li><a href="#">網站瀏覽</a></li>
+                </ul>
 
-                    <div class="subConnection">
-                        <dt>服務時間</dt>
-                        <dd>週一至週五09:00~18:00 (例假日除外)</dd>
-                    </div>
-
-                </dl>
             </div>
         </div>
-
-        <div class="bottom">
-            <p>
-                © 2019 Business Weekly a division of Cite Publishing Ltd All Rights Reserved.
-            </p>
-
-            <ul class="link">
-                <li><a href="#">關於商周集團</a></li>
-                <li><a href="#">公告</a></li>
-                <li><a href="#">文章影音授權</a></li>
-                <li><a href="#">廣告合作</a></li>
-                <li><a href="#">常見問題</a></li>
-                <li><a href="#">隱私權說明</a></li>
-                <li><a href="#">網站瀏覽</a></li>
-            </ul>
-
-        </div>
-
 
 
 
