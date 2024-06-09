@@ -44,7 +44,6 @@
             align-items: start;
             margin: 70px 15%;
             column-gap: 9%;
-            /* border: 2px solid red; */
         }
 
         .service .pic {
@@ -72,14 +71,21 @@
             display: flex;
             flex-wrap: wrap;
             line-height: 2;
+            margin-left: 25px;
         }
 
         .service .txt li {
             width: 50%;
-            list-style-position: inside;
+            text-indent: -5px;
         }
 
         .service .txt li::marker {
+            color: blue;
+            font-size: 25px;
+        }
+
+        .service .txt .connect a {
+            text-underline-offset: 8px;
             color: blue;
         }
 
