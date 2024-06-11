@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
+        @font-face {
+            font-family: "Noto_Sans_TC";
+            src: url(font/Noto_Sans_TC/static/NotoSansTC-Regular.ttf);
+        }
+
+
         * {
             margin: 0;
             padding: 0;
+            font-family: "Noto_Sans_TC", sans-serif;
         }
 
         h2 {
@@ -85,23 +93,21 @@
             font-size: 25px;
         }
 
-        .service .txt .connect a {
-            text-underline-offset: 8px;
+        .service .txt a {
             color: blue;
+            text-decoration: none;
         }
 
-        .service .txt .connect .arrow {
-            text-decoration: none;
+        .service .txt a span {
+            text-underline-offset: 8px;
+            text-decoration: underline;
+            margin-right: 5px;
             margin-left: 5px;
             transition: all 0.25s ease;
         }
 
-        .service .txt a:hover+.arrow {
-            margin-left: 15px;
-        }
-
-        .service .txt a:hover.arrow {
-            margin-left: 15px;
+        .service .txt a:hover span {
+            margin-right: 15px;
         }
 
         .service:nth-child(2n) {
@@ -163,10 +169,9 @@
                         <li>獨有網址 ＆ SSL 安全憑證</li>
                         <li>開放 HTML／CSS 編輯</li>
                     </ul>
-                    <div class="connect">
-                        <a href="#">看看開店祕技</a>
-                        <a href="#" class="arrow"> → </a>
-                    </div>
+                    <a href="#">
+                        <span>看看開店祕技</span><i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </article>
 
@@ -186,10 +191,9 @@
                         <li>超商代碼／條碼繳費</li>
                         <li>發票開立與串接</li>
                     </ul>
-                    <div class="connect">
-                        <a href="#">了解更多金物流</a>
-                        <a href="#" class="arrow">→</a>
-                    </div>
+                    <a href="#">
+                        <span>了解更多金物流</span><i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </article>
 
@@ -209,10 +213,9 @@
                         <li>會員分級／點數／購物金</li>
                         <li>FB／Google／LINE 廣告追蹤</li>
                     </ul>
-                    <div class="connect">
-                        <a href="#">看更多優惠模組</a>
-                        <a href="#" class="arrow">→</a>
-                    </div>
+                    <a href="#">
+                        <span>看更多優惠模組</span><i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </article>
 
@@ -232,10 +235,9 @@
                         <li>自訂聊天機器人腳本</li>
                         <li>訊息整合中心</li>
                     </ul>
-                    <div class="connect">
-                        <a href="#">看更多社群購物功能</a>
-                        <a href="#" class="arrow">→</a>
-                    </div>
+                    <a href="#">
+                        <span>看更多社群購物功能</span><i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </article>
 
@@ -255,10 +257,9 @@
                         <li>門市快速集客工具</li>
                         <li>Smart OMO 會員導購工具</li>
                     </ul>
-                    <div class="connect">
-                        <a href="#">了解更多全通路整合</a>
-                        <a href="#" class="arrow">→</a>
-                    </div>
+                    <a href="#">
+                        <span>了解更多全通路整合</span><i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
             </article>
         </div>
