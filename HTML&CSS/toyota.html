@@ -184,11 +184,8 @@
             display: flex;
         }
 
-        .even-box .pic .yt-logo {
-            left: -10px;
-        }
-
-        .pic .yt-logo .triangle {
+        .pic .yt-logo::before {
+            content: '';
             background-color: #FFF;
             width: 25px;
             height: 25px;
@@ -196,6 +193,10 @@
             clip-path: polygon(0% 0%,
                     100% 50%,
                     0% 100%);
+        }
+
+        .even-box .pic .yt-logo {
+            left: -10px;
         }
     </style>
 
@@ -237,7 +238,6 @@
                 <a href="#">
                     <img class="car-pic" src="toyota/car-1.png" alt="car-1">
                     <div class="yt-logo">
-                        <div class="triangle"></div>
                     </div>
                 </a>
             </div>
@@ -272,7 +272,6 @@
                 <a href="#">
                     <img class="car-pic" src="toyota/car-2.png" alt="car-2">
                     <div class="yt-logo">
-                        <div class="triangle"></div>
                     </div>
                 </a>
             </div>
@@ -310,7 +309,6 @@
                 <a href="#">
                     <img class="car-pic" src="toyota/car-3.png" alt="car-3">
                     <div class="yt-logo">
-                        <div class="triangle"></div>
                     </div>
                 </a>
             </div>
@@ -345,7 +343,6 @@
                 <a href="#">
                     <img class="car-pic" src="toyota/car-4.png" alt="car-4">
                     <div class="yt-logo">
-                        <div class="triangle"></div>
                     </div>
                 </a>
             </div>
@@ -380,7 +377,6 @@
                 <a href="#">
                     <img class="car-pic" src="toyota/car-5.png" alt="car-5">
                     <div class="yt-logo">
-                        <div class="triangle"></div>
                     </div>
                 </a>
             </div>
