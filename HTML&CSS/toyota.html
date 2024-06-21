@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         @font-face {
             font-family: "Noto_Sans_TC";
@@ -30,171 +29,172 @@
             min-width: 1200px;
         }
 
-
         .box {
             width: 960px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-content: space-between;
-            align-items: start;
-            margin: 500px auto;
-            /*待調整*/
+            margin: 100px auto;
             position: relative;
-        }
-
-        .even-box {
-            flex-direction: row-reverse;
-        }
-
-        .theme {
-            width: 336px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .theme>.title {
-            background-color: #f00;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .even-box .theme>.title {
-            flex-direction: row-reverse;
-        }
-
-        .theme>.txt {
-            background-color: #000;
-            color: #fff;
-            padding: 20px 20px 50px;
-            line-height: 1.75;
-            position: relative;
-            z-index: 2;
-        }
-
-        .theme .txt p {
-            font-size: 18px;
         }
 
         .vert-wm {
             writing-mode: vertical-lr;
-            vertical-align: middle;
             font-size: 96px;
             line-height: 1;
+        }
+
+        .theme {
+            width: 320px;
+        }
+
+        .box:nth-child(2n) .theme {
+            margin-left: auto;
+        }
+
+        .theme .title {
+            width: 100%;
+            background-color: #F00;
+            display: flex;
+            color: #FFF;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .box:nth-child(2n) .theme .title {
+            flex-direction: row-reverse;
+        }
+
+        .theme .txt {
+            width: 320px;
+            background-color: #000;
+            color: #FFF;
+            position: absolute;
+            z-index: 2;
+            padding: 10px 20px 20px;
+            box-sizing: border-box;
+            line-height: 1.75;
+        }
+
+        .pic {
+            width: 715px;
+            margin-left: auto;
+            margin-right: 50px;
+        }
+
+        .box:nth-child(2n) .pic {
+            margin-left: 0;
+        }
+
+        .pic a {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            position: relative;
+        }
+
+        .box:nth-child(2n) .pic a {
+            flex-direction: row-reverse;
+        }
+
+        .pic a img {
+            z-index: 1;
+        }
+
+        .pic a .yt-logo {
+            background-color: #F00;
+            width: 60px;
+            height: 40px;
+            right: 0;
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box:nth-child(2n) .pic a .yt-logo {
+            left: 0;
+        }
+
+        .pic a .yt-logo::before {
+            content: '';
+            background-color: #FFF;
+            width: 25px;
+            height: 25px;
+            /* margin: auto; */
+            clip-path: polygon(0% 0%,
+                    100% 50%,
+                    0% 100%);
+        }
+
+        .introduce {
+            background-color: #DDD;
+            width: 640px;
+            padding: 10px 20px;
+            margin-top: -20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .box:nth-child(2n) .introduce {
+            margin-left: auto;
+        }
+
+        .introduce .title {
+            display: flex;
+            color: #E00;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            align-items: center;
+        }
+
+        .introduce .title::after {
+            content: '';
+            border: 2px solid #F00;
+            flex-grow: 1;
+            height: 0;
+            margin-left: 1em;
+        }
+
+        .introduce dt {
+            background-color: #000;
+            color: #FFF;
+            width: fit-content;
+            font-size: 16px;
+        }
+
+        .introduce dd {
+            padding-left: 1em;
+            text-indent: -1em;
+            color: #777;
+        }
+
+        .introduce dd::before {
+            content: '';
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background-color: #F00;
+            position: relative;
+            top: 2px;
+            border-radius: 50%;
+            scale: .3;
         }
 
         .gray-box {
             width: 432px;
             height: 250px;
             background-color: #EEE;
-            position: relative;
+            position: absolute;
+            right: 0;
             top: 30px;
             z-index: 0;
         }
 
-        .even-box .gray-box {
-            top: 30px;
+        .box:nth-child(2n) .gray-box {
+            top: 50px;
             left: 350px;
             height: 400px;
-        }
-
-        .introduce {
-            width: 672px;
-            background-color: #DDD;
-            position: absolute;
-            top: 414px;
-            left: 100px;
-            z-index: 2;
-            box-sizing: border-box;
-            padding: 10px 20px;
-            line-height: 1.5;
-        }
-
-        .even-box .introduce {
-            left: -336px;
-
-        }
-
-        .introduce .title {
-            color: #E00;
-            font-size: 16px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            display: flex;
-        }
-
-        .introduce .title .line {
-            border-top: 2px solid red;
-            margin: auto;
-            margin-left: 5px;
-            flex-grow: 1;
-        }
-
-        .introduce .content .sub-title {
-            background-color: #000;
-            color: #FFF;
-            padding: 0 5px;
-            font-size: 16px;
-        }
-
-        .introduce .content .txt {
-            color: #777;
-            font-size: 15px;
-            display: list-item;
-            list-style-type: disc;
-            list-style-position: outside;
-            margin-left: 1.5em;
-        }
-
-        .introduce .content .txt::marker {
-            color: red;
-            font-size: 9px;
-        }
-
-        .fa-solid.fa-circle {
-            color: #F00;
-            font-size: 5px;
-            vertical-align: middle;
-            margin-right: 5px;
-        }
-
-        .pic {
-            position: absolute;
-            top: 0;
-            top: 100%;
-            left: 200px;
-            z-index: 1;
-        }
-
-        .even-box .pic {
-            left: -624px;
-        }
-
-        .pic .yt-logo {
-            background-color: #F00;
-            width: 60px;
-            height: 40px;
-            position: absolute;
-            top: 45%;
-            left: 95%;
-            display: flex;
-        }
-
-        .pic .yt-logo::before {
-            content: '';
-            background-color: #FFF;
-            width: 25px;
-            height: 25px;
-            margin: auto;
-            clip-path: polygon(0% 0%,
-                    100% 50%,
-                    0% 100%);
-        }
-
-        .even-box .pic .yt-logo {
-            left: -10px;
         }
     </style>
 
@@ -202,198 +202,189 @@
 </head>
 
 <body>
-
     <div class="box-list">
         <div class="box">
             <div class="theme">
                 <div class="title">
                     <div class="vert-wm"> 01</div>
                     <h2>操控樂趣</h2>
-                    <div class="pic">
-                        <a href="#">
-                            <img class="car-pic" src="toyota/car-1.png" alt="car-1">
-                            <div class="yt-logo">
-                            </div>
-                        </a>
-                    </div>
                 </div>
                 <div class="txt">
                     <h3>人人滿意的駕駛體驗</h3>
                     <p>透過最佳重量分配，實現平順起步、直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳成的行駛快感</p>
-                    <div class="introduce">
-                        <div class="title">
-                            <p>因為我們做了這些革新</p>
-                            <div class="line"></div>
-                        </div>
-                        <dl class="content">
-                            <dt><span class="sub-title">低重心設計</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
-                            <dt><span class="sub-title">車體剛性強化</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
-                            </dd>
-                            <dt><span class="sub-title">四輪獨立懸吊</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計。
-                            </dd>
-                        </dl>
-                    </div>
+
                 </div>
             </div>
+            <div class="pic">
+                <a href="#">
+                    <img class="car-pic" src="toyota/car-1.png" alt="car-1">
+                    <div class="yt-logo"></div>
+                </a>
+            </div>
+            <div class="introduce">
+                <div class="title">
+                    <p>因為我們做了這些革新</p>
+                </div>
+                <dl class="content">
+                    <dt><span class="sub-title">低重心設計</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
+                    <dt><span class="sub-title">車體剛性強化</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
+                    </dd>
+                    <dt><span class="sub-title">四輪獨立懸吊</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計。
+                    </dd>
+                </dl>
+            </div>
             <div class="gray-box"></div>
-
-
         </div>
 
-        <div class="box even-box">
+        <div class="box">
             <div class="theme">
                 <div class="title">
                     <div class="vert-wm"> 02</div>
-                    <h2>安全守護</h2>
-                    <div class="pic">
-                        <a href="#">
-                            <img class="car-pic" src="toyota/car-2.png" alt="car-2">
-                            <div class="yt-logo">
-                            </div>
-                        </a>
-
-                    </div>
+                    <h2>操控樂趣</h2>
                 </div>
                 <div class="txt">
-                    <h3>行車更安心的高剛性車體</h3>
+                    <h3>人人滿意的駕駛體驗</h3>
                     <p>透過最佳重量分配，實現平順起步、直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳成的行駛快感</p>
-                    <div class="introduce">
-                        <div class="title">
-                            <p>因為我們做了這些革新</p>
-                            <div class="line"></div>
-                        </div>
-                        <dl class="content">
-                            <dt><span class="sub-title">主動安全</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾。</dd>
-                            <dt><span class="sub-title">被動安全</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。
-                            </dd>
-                        </dl>
-                    </div>
+
                 </div>
             </div>
+            <div class="pic">
+                <a href="#">
+                    <img class="car-pic" src="toyota/car-2.png" alt="car-2">
+                    <div class="yt-logo"></div>
+                </a>
+            </div>
+            <div class="introduce">
+                <div class="title">
+                    <p>因為我們做了這些革新</p>
+                </div>
+                <dl class="content">
+                    <dt><span class="sub-title">低重心設計</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
+                    <dt><span class="sub-title">車體剛性強化</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
+                    </dd>
+                    <dt><span class="sub-title">四輪獨立懸吊</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計。
+                    </dd>
+                </dl>
+            </div>
             <div class="gray-box"></div>
-
-
         </div>
 
         <div class="box">
             <div class="theme">
                 <div class="title">
                     <div class="vert-wm"> 03</div>
-                    <h2>乘坐舒適</h2>
-                    <div class="pic">
-                        <a href="#">
-                            <img class="car-pic" src="toyota/car-3.png" alt="car-3">
-                            <div class="yt-logo">
-                            </div>
-                        </a>
-
-
-                    </div>
+                    <h2>操控樂趣</h2>
                 </div>
                 <div class="txt">
-                    <h3>令人放鬆舒適的車室空間</h3>
-                    <p>透過最佳重量分配，實現平順起步、直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳成的行駛快感，帶給駕駛更靈敏的道路反饋</p>
-                    <div class="introduce">
-                        <div class="title">
-                            <p>因為我們做了這些革新</p>
-                            <div class="line"></div>
-                        </div>
-                        <dl class="content">
-                            <dt><span class="sub-title">駕駛位置最佳化</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
-                            <dt><span class="sub-title">駕馭視野佳</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
-                            </dd>
-                            <dt><span class="sub-title">更寧靜的車室</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計。
-                            </dd>
-                        </dl>
-                    </div>
+                    <h3>人人滿意的駕駛體驗</h3>
+                    <p>透過最佳重量分配，實現平順起步、直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳成的行駛快感</p>
+
                 </div>
             </div>
+            <div class="pic">
+                <a href="#">
+                    <img class="car-pic" src="toyota/car-3.png" alt="car-3">
+                    <div class="yt-logo"></div>
+                </a>
+            </div>
+            <div class="introduce">
+                <div class="title">
+                    <p>因為我們做了這些革新</p>
+                </div>
+                <dl class="content">
+                    <dt><span class="sub-title">低重心設計</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
+                    <dt><span class="sub-title">車體剛性強化</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
+                    </dd>
+                    <dt><span class="sub-title">四輪獨立懸吊</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計。
+                    </dd>
+                </dl>
+            </div>
             <div class="gray-box"></div>
-
         </div>
 
-        <div class="box even-box">
+        <div class="box">
             <div class="theme">
                 <div class="title">
                     <div class="vert-wm"> 04</div>
-                    <h2>以人為本</h2>
-                    <div class="pic">
-                        <a href="#">
-                            <img class="car-pic" src="toyota/car-4.png" alt="car-4">
-                            <div class="yt-logo">
-                            </div>
-                        </a>
-
-                    </div>
+                    <h2>操控樂趣</h2>
                 </div>
                 <div class="txt">
-                    <h3>使用者導向的貼心設計</h3>
-                    <p>透過最佳重量分配，實現平順起步、直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳成的行駛快感，享受隨心馳成的行駛快感</p>
-                    <div class="introduce">
-                        <div class="title">
-                            <p>因為我們做了這些革新</p>
-                            <div class="line"></div>
-                        </div>
-                        <dl class="content">
-                            <dt><span class="sub-title">主動安全</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾。透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾。</dd>
-                            <dt><span class="sub-title">被動安全</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。
-                            </dd>
-                        </dl>
-                    </div>
+                    <h3>人人滿意的駕駛體驗</h3>
+                    <p>透過最佳重量分配，實現平順起步、直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳成的行駛快感</p>
+
                 </div>
             </div>
+            <div class="pic">
+                <a href="#">
+                    <img class="car-pic" src="toyota/car-4.png" alt="car-4">
+                    <div class="yt-logo"></div>
+                </a>
+            </div>
+            <div class="introduce">
+                <div class="title">
+                    <p>因為我們做了這些革新</p>
+                </div>
+                <dl class="content">
+                    <dt><span class="sub-title">低重心設計</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
+                    <dt><span class="sub-title">車體剛性強化</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
+                    </dd>
+                    <dt><span class="sub-title">四輪獨立懸吊</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計。
+                    </dd>
+                </dl>
+            </div>
             <div class="gray-box"></div>
-
-
         </div>
 
         <div class="box">
             <div class="theme">
                 <div class="title">
                     <div class="vert-wm"> 05</div>
-                    <h2>引以為傲</h2>
-                    <div class="pic">
-                        <a href="#">
-                            <img class="car-pic" src="toyota/car-5.png" alt="car-5">
-                            <div class="yt-logo">
-                            </div>
-                        </a>
-
-                    </div>
+                    <h2>操控樂趣</h2>
                 </div>
                 <div class="txt">
-                    <h3>極具吸引力的精心設計</h3>
+                    <h3>人人滿意的駕駛體驗</h3>
                     <p>透過最佳重量分配，實現平順起步、直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳成的行駛快感</p>
-                    <div class="introduce">
-                        <div class="title">
-                            <p>因為我們做了這些革新</p>
-                            <div class="line"></div>
-                        </div>
-                        <dl class="content">
-                            <dt><span class="sub-title">設計概念</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
-                            <dt><span class="sub-title">環保概念</span></dt>
-                            <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
-                            </dd>
-                        </dl>
-                    </div>
+
                 </div>
             </div>
+            <div class="pic">
+                <a href="#">
+                    <img class="car-pic" src="toyota/car-5.png" alt="car-5">
+                    <div class="yt-logo"></div>
+                </a>
+            </div>
+            <div class="introduce">
+                <div class="title">
+                    <p>因為我們做了這些革新</p>
+                </div>
+                <dl class="content">
+                    <dt><span class="sub-title">低重心設計</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</dd>
+                    <dt><span class="sub-title">車體剛性強化</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計，不僅呈現更低伏的外觀。
+                    </dd>
+                    <dt><span class="sub-title">四輪獨立懸吊</span></dt>
+                    <dd class="txt">透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。透過低重心設計。
+                    </dd>
+                </dl>
+            </div>
             <div class="gray-box"></div>
-
-
         </div>
     </div>
+
+
 
 </body>
 
