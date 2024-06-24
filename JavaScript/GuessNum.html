@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .game {
+            width: 350px;
+            height: 200px;
+            display: grid;
+            grid-template: 30px 30px 50px/repeat(2, 150px);
+            gap: 10px;
+            justify-content: center;
+            align-content: center;
+            border: 2px solid #000;
+
+        }
+
+        .hint {
+            grid-column: span 2;
+            font-size: 16px;
+            padding-left: 2px;
+            line-height: 30px;
+            margin-top: auto;
+            /* border: 2px solid #000; */
+        }
+
+        .input {
+            grid-column: span 2;
+            border: 2px solid #000;
+            font-size: 16px;
+            padding-left: 2px;
+            line-height: 30px;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game">
+        <div class="hint"></div>
+        <input type="text" class="input" disabled>
+        <button class="btn guess">開始遊戲</button>
+        <button class="btn reset" disabled>重新開始</button>
+    </div>
+
+    <script>
+        let ans, rangeMin, rangeMax;
+        const guessBtn = document.querySelector(".guess");
+        const resetBtn = document.querySelector(".reset");
+        const hintText = document.querySelector(".hint");
+        const inputText = document.querySelector(".input");
+
+        resetBtn.addEventListener("click", reset);
+        reset();
+
+        function startGame() {
+            ans = Math.floor(Math.random() * 98 + 2);
+            hintText.textContent = getHintText();
+            guessBtn.textContent = "猜答案";
+            resetBtn.disabled = null;
+            inputText.disabled = null;
+            guessBtn.removeEventListener("click", startGame);
+            guessBtn.addEventListener("click", guessNum);
+        }
+
+        function guessNum() {
+            try {
+                let num = Number.parseInt(inputText.value);
+                if (Number.isNaN(num)) {   // 判斷是否整數
+                    hintText.textContent = "輸入錯誤，" + getHintText();
+                    return;
+                } else if (num <= rangeMin
+                    || num >= rangeMax) {   // 判斷是否在範圍內
+                    hintText.textContent = getHintText();
+                    return
+                }
+
+                // 更新range
+                if (updateRange(num)) { // 答對了
+                    success();
+                } else {  // 答錯了
+                    hintText.textContent = getHintText();
+                }
+            } finally {
+                inputText.value = "";
+            }
+
+
+        }
+
+        function getHintText() {
+            return `請輸入${rangeMin}~${rangeMax}的數字`;
+        }
+
+        function updateRange(input) {
+            if (input == ans) {
+                return true;
+            }
+
+            if (input > ans) {
+                rangeMax = input;
+            } else {
+                rangeMin = input;
+            }
+            return false
+        }
+
+        function success() {
+            hintText.textContent = `恭喜答對了!!!答案是${ans}`;
+            guessBtn.removeEventListener("click", guessNum);
+            guessBtn.disabled = true;
+            inputText.disabled = true;
+        }
+
+        function reset() {
+            guessBtn.addEventListener("click", startGame);
+
+            rangeMin = Number(1);
+            rangeMax = Number(100);
+            inputText.value = "";
+            guessBtn.textContent = "開始遊戲";
+            hintText.textContent = ""
+            guessBtn.disabled = null;
+            resetBtn.disabled = true;
+            inputText.disabled = true;
+        }
+
+    </script>
+
+
+</body>
+
+</html>
