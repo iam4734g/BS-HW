@@ -28,7 +28,6 @@ let editEndDate = new Date(now);  //修改事項結束日期
 const maxEventNum = 4; //每天顯示最多
 let editId = "";
 
-// localStorage.clear();
 // 載入資料
 addEventListener("DOMContentLoaded", () => {
     generateCalendar();
@@ -83,6 +82,7 @@ function generateDay() {
             }
             // 新增資訊
             theDiv.dataset.date = `${theDay.getFullYear()}-${theDay.getMonth() + 1}-${theDay.getDate()}`;
+            theDiv.dataset.day = theDay.getDay();
             theDay.setDate(theDay.getDate() + 1);
 
             dayList.append(theDiv);
@@ -102,6 +102,47 @@ function generateTodoList() {
     // 取的每天的DOM
     let allDOM = document.querySelectorAll(".day");
 
+    // 生成前面月份事項
+    const theFirstDayDOM = allDOM[0];
+    const theFirstDay = new Date(theFirstDayDOM.dataset.date);
+    const thePreEventData = todoStorage.filter(data => data.startDate < theFirstDay.valueOf() && data.endDate > theFirstDay.valueOf());
+    thePreEventData.sort(data => data.duration);
+    for (const theData of thePreEventData) {
+        let eventIdx = 0;
+        // 判斷event1~4是否為空
+        for (let i = 1; i <= maxEventNum; i++) {
+            if (theFirstDayDOM.querySelector(`.event:nth-child(${i + 1})`).dataset.isvalue === "false") {
+                eventIdx = i;
+                break;
+            }
+        }
+        // 事件已滿
+        if (eventIdx === 0) { break; }
+
+        const theDuration = durationDate(theFirstDay.valueOf(), thePreEventData[0].endDate);
+
+        // 生成該筆資料所有時間
+        for (let durIdx = 0; durIdx < theDuration; durIdx++) {
+            if (durIdx >= allDOM.length) { break; }
+            const theDOM = allDOM[durIdx].querySelector(`.event${eventIdx}`);
+            theDOM.style["background-color"] = theData.color;
+            if (allDOM[durIdx].dataset.day === "0") { //星期日
+                theDOM.textContent = theData.todo;
+            }
+
+            if (durIdx === theDuration - 1) {// 最後一天
+                theDOM.style["border-top-right-radius"] = "10px";
+                theDOM.style["border-bottom-right-radius"] = "10px";
+                theDOM.classList.add("me-1");
+            }
+            theDOM.setAttribute("data-bs-toggle", "modal");
+            theDOM.setAttribute("data-bs-target", "#editEventModal");
+            theDOM.dataset.isvalue = "true";
+            theDOM.dataset.id = theData.id;
+        }
+    }
+
+    // 生成當月事項
     // 取得日期
     const theDay = new Date(allDOM[0].dataset.date);
     theDay.setHours(0, 0, 0, 0);
@@ -131,6 +172,9 @@ function generateTodoList() {
                 if (allDOMIdx + durIdx >= allDOM.length) { break; }
                 const theDOM = allDOM[allDOMIdx + durIdx].querySelector(`.event${eventIdx}`);
                 theDOM.style["background-color"] = theData.color;
+                if (allDOM[allDOMIdx + durIdx].dataset.day === "0") { //星期日
+                    theDOM.textContent = theData.todo;
+                }
                 if (durIdx === 0) { // 第一天
                     theDOM.textContent = theData.todo;
                     theDOM.style["border-top-left-radius"] = "5px";
@@ -146,13 +190,12 @@ function generateTodoList() {
                 theDOM.dataset.isvalue = "true";
                 theDOM.dataset.id = theData.id;
             }
-
         }
         // 更新日期
         theDay.setDate(theDay.getDate() + 1);
     }
-
 }
+
 
 // 下個月
 nextMonthBtn.addEventListener("click", () => {
@@ -345,7 +388,7 @@ function saveData(storageObj) { // storageObj:用null表示沒要更新的欄位
         if (storageObj.endDate !== undefined) { theStorage.endDate = storageObj.endDate; }
         if (storageObj.todo !== undefined) { theStorage.todo = storageObj.todo; }
         if (storageObj.color !== undefined) { theStorage.color = storageObj.color; }
-        storageObj.duration = durationDate(storageObj.startDate, storageObj.endDate)
+        theStorage.duration = durationDate(storageObj.startDate, storageObj.endDate)
     } else {    // 無資料
         storageObj.duration = durationDate(storageObj.startDate, storageObj.endDate)
         todoStorage.push(storageObj);
