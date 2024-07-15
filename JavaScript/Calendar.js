@@ -119,7 +119,7 @@ function generateTodoList() {
         // 事件已滿
         if (eventIdx === 0) { break; }
 
-        const theDuration = durationDate(theFirstDay.valueOf(), thePreEventData[0].endDate);
+        const theDuration = durationDate(theFirstDay.valueOf(), theData.endDate);
 
         // 生成該筆資料所有時間
         for (let durIdx = 0; durIdx < theDuration; durIdx++) {
