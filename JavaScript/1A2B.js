@@ -1,15 +1,12 @@
 
 const startBtn = document.querySelector("#start_btn");
 const showAnsBtn = document.querySelector("#show_answer_btn");
-const restartBtn = document.querySelector("#restart_btn");
 const guessHistoryList = document.querySelector("#guess_history_list");
 const guessBtn = document.querySelector("#guess_btn");
 const guessInput = document.querySelector("#guess_input");
 const gameMsgToast = document.querySelector("#game_msg_toast");
 const toastBootstrap = new bootstrap.Toast(gameMsgToast, { delay: 1000 });
-gameMsgToast.addEventListener("hide.bs.toast", () => {
-    console.log("toast hide!");
-})
+
 const endGameModalBtn = document.querySelector("#end_game_modal");
 const myModal = new bootstrap.Modal(endGameModalBtn);
 
@@ -21,11 +18,18 @@ function initGame() {
 
     // 清空紀錄
     guessHistoryList.innerHTML = "";
+
+    // 按鈕狀態初始化
+    showAnsBtn.disabled = false;
+    guessBtn.disabled = false;
+    guessInput.disabled = false;
+    startBtn.innerText = "放棄重來";
+
 }
 
 function generateAns() {
     const numArr = Array.from({ length: 10 }, (el, idx) => idx);
-    numArr.sort((a, b) => getRandomArbitrary(-1, 1));   ////代確認是否夠亂
+    numArr.sort((a, b) => getRandomArbitrary(-1, 1));
     return numArr.slice(0, 4).join("");
 }
 
@@ -35,15 +39,12 @@ function getRandomArbitrary(min, max) {
 
 startBtn.addEventListener("click", initGame)
 
-restartBtn.addEventListener("click", initGame)
-
 showAnsBtn.addEventListener("click", () => {
-    console.log(`answer: ${answer}`);
+    showHint(answer);
 })
 
 guessBtn.addEventListener("click", () => {
     const val = guessInput.value.trim();
-    console.log(val);
     // 驗證輸入的合法性
     if (val === "" || isNaN(val)) {
         showHint("請輸入合法的數字");
@@ -89,7 +90,6 @@ function appendHistory(a, b, input) {
 
 function showHint(msg) {
     gameMsgToast.querySelector(".toast-body").textContent = msg;
-    // const toastBootstrap = bootstrap.Toast.getOrCreateInstance(gameMsgToast);
     toastBootstrap.show();
 
 }
