@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <style>
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 70vh;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 fs-1 fw-bold">
+                台北市Youbike站點地圖
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row fs-2 fw-bold"> 站點資訊</div>
+                <div class="row">
+                    <select class="form-select w-100 sarea-option-list">
+                    </select>
+                </div>
+                <div class="row">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-2">區域</th>
+                                <th class="col-6">站點名稱</th>
+                                <th class="col-2">數量(剩餘/空位/總共)</th>
+                                <th class="col-1">地圖</th>
+                                <th class="col-1">經緯度</th>
+                            </tr>
+                        </thead>
+                        <tbody class="my-table">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <script>
+        const map = L.map("map");
+        const markers = L.markerClusterGroup();
+        const sareaOptionList = document.querySelector(".sarea-option-list");
+        const myTable = document.querySelector(".my-table");
+        let optionList = [];
+
+        window.onload = function () {
+            initMap();
+            markers.clearLayers();
+            fetchYoubikeData().then(data => {
+                initOption(data);
+
+                data.forEach(station => {
+                    generateStationDOM(station);
+                    setupMarkers(station);
+                });
+                map.addLayer(markers);
+            })
+        }
+
+        // todo 選地區
+        sareaOptionList.addEventListener("change", (e) => {
+            generateStationInfo(e.target.value);
+        })
+
+        // 生成資訊
+        function generateStationInfo(sarea) {
+            // 清空DOM
+            myTable.innerHTML = '';
+
+            fetchYoubikeData().then(data => {
+                initOption(data, sarea);
+
+                let sareaData = data.slice(0);
+                // 篩選區域
+                if (optionList.includes(sarea) && sarea !== "全部") {
+                    sareaData = sareaData.filter(station => station.sarea === sarea);
+                }
+
+                // 飛去第一個選項
+                if (sareaData.length > 0) {
+                    map.flyTo([sareaData[0].latitude, sareaData[0].longitude
+                    ], 17);
+                }
+
+                markers.clearLayers();
+                sareaData.forEach(station => {
+                    generateStationDOM(station);
+                    setupMarkers(station);
+                });
+                map.addLayer(markers);
+            })
+        }
+
+        function initMap() {
+            map.setView([25.041599, 121.5362731], 17)
+
+            // 設定圖資
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+        }
+
+        // 初始化選項
+        function initOption(data, selected) {
+            // 清空資料
+            sareaOptionList.innerHTML = '';
+            optionList = [];
+
+            let sarea = "全部";
+            optionList.push(sarea)
+            setOption(sarea);
+
+            data.forEach(station => {
+                sarea = station.sarea;
+                if (!optionList.includes(sarea)) {
+                    optionList.push(sarea);
+                    setOption(sarea, sarea === selected);
+                }
+            })
+        }
+
+        // 設定選項
+        function setOption(name, isSelected) {
+            const option = document.createElement("option");
+            option.textContent = name;
+            option.setAttribute("value", name);
+            if (isSelected) {
+                option.selected = true;
+            }
+            sareaOptionList.append(option);
+        }
+
+        // 獲取資料
+        function fetchYoubikeData() {
+            const taipeiYoubikeData = "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json";
+            return fetch(taipeiYoubikeData).then(res => res.json())
+        }
+
+        // 生成站點資料
+        function generateStationDOM(station) {
+            const tr = document.createElement("tr");
+
+            const sareaTd = document.createElement("td");
+            sareaTd.textContent = `${station.sarea}`;
+
+            const stationNameTd = document.createElement("td");
+            stationNameTd.textContent = `${station.sna}`;
+
+            const countTd = document.createElement("td");
+            countTd.textContent = `${station.available_rent_bikes}/${station.available_return_bikes}/${station.total}`;
+
+            const mapTd = document.createElement("td");
+            const mapI = document.createElement("i");
+            mapI.classList.add("fa-solid", "fa-map-location-dot");
+            mapI.addEventListener("click", () => {
+                map.flyTo([station.latitude, station.longitude
+                ], 17);
+            })
+            mapTd.append(mapI);
+
+            const infoTd = document.createElement("td");
+            const infoI = document.createElement("i");
+            infoI.classList.add("fa-solid", "fa-circle-info");
+            infoI.setAttribute("data-bs-toggle", "tooltip");
+            infoI.setAttribute("data-bs-title", `${station.latitude}, ${station.longitude}`);
+            new bootstrap.Tooltip(infoI);
+            infoTd.append(infoI);
+
+            tr.append(sareaTd, stationNameTd, countTd, mapTd, infoTd);
+
+            myTable.append(tr);
+        }
+
+        // 生成地圖標記
+        function setupMarkers(station) {
+            const marker = L.marker([station.latitude, station.longitude
+            ]);
+            marker.bindPopup(`${station.sna} <br> 剩餘/空位/總共 : ${station.available_rent_bikes}/${station.available_return_bikes}/${station.total}`);
+            markers.addLayer(marker);
+        }
+
+
+    </script>
+</body>
+
+</html>
